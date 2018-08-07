@@ -1,9 +1,8 @@
 package com.example.cs3200finalprojectjavaserver.models;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +13,12 @@ public class Review {
     private Date reviewTime;
     @OneToMany(mappedBy="review")
     private List<Rating> ratings;
+    @ManyToOne
+    @JsonIgnore
+    private User user;
+    @ManyToOne
+    @JsonIgnore
+    private Video video;
 
     public int getId() {
         return id;
@@ -37,5 +42,21 @@ public class Review {
 
     public void setRatings(List<Rating> ratings) {
         this.ratings = ratings;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Video getVideo() {
+        return video;
+    }
+
+    public void setVideo(Video video) {
+        this.video = video;
     }
 }
