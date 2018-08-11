@@ -27,10 +27,10 @@ public class ReviewService {
 
     @PostMapping("/api/review")
     public Review createVideo(@RequestBody Review review) {
-        if (reviewRepository.findReviewByVideoAndUser(review.getUser(), review.getVideo()) == null) {
+       // if (reviewRepository.findReviewByVideoAndUser(review.getUser(), review.getVideo()) == null) {
             reviewRepository.save(review);
             return review;
-        }
-        return null;
+        //}
+        //return null;
     }
 }
