@@ -33,7 +33,7 @@ public class UserService {
         return userRepository.findById(userId).get();
     }
 
-    @GetMapping("/api/register/{username}")
+    @GetMapping("/api/user/{username}")
     public User findUserByUsername(@PathVariable("username") String username) {
         return userRepository.findUserByUsername(username);
     }
