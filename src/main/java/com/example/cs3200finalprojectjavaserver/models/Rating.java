@@ -53,4 +53,8 @@ public class Rating {
     public void setReview(Review review) {
         this.review = review;
     }
+
+    public void updateRating(Rating rating) {
+        this.ratingValue = rating.ratingValue;
+    }
 }
