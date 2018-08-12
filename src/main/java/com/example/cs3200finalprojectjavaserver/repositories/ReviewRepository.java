@@ -8,7 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface ReviewRepository extends CrudRepository<Review, Integer> {
     //TODO idk if this will actually work
-    @Query("SELECT review FROM Review review WHERE review.user=:user.id AND review.video=:video.id")
-    User findReviewByVideoAndUser(User user, Video video);
+//    @Query("SELECT review FROM Review review WHERE review.user=:user.id AND review.video=:video.id")
+//    User findReviewByVideoAndUser(User user, Video video);
 
 }
