@@ -1,9 +1,7 @@
 package com.example.cs3200finalprojectjavaserver.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Video {
@@ -11,6 +9,8 @@ public class Video {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     private String url;
+    @OneToMany(mappedBy="video")
+    private List<Review> reviews;
 
     public int getId() {
         return id;
@@ -27,4 +27,11 @@ public class Video {
         this.url = url;
     }
 
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
 }
