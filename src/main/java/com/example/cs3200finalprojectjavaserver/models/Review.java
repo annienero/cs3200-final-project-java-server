@@ -13,6 +13,7 @@ public class Review {
     private int id;
     @Temporal(TemporalType.TIMESTAMP)
     private Date reviewTime;
+    private String reviewText;
     @OneToMany(mappedBy="review")
     private List<Rating> ratings;
     @ManyToOne
@@ -60,5 +61,19 @@ public class Review {
 
     public void setVideo(Video video) {
         this.video = video;
+    }
+
+    public String getReviewText() {
+        return reviewText;
+    }
+
+    public void setReviewText(String reviewText) {
+        this.reviewText = reviewText;
+    }
+
+    public void updateReview(Review review) {
+        if (review.reviewText != null) {
+            this.reviewText = review.reviewText;
+        }
     }
 }
