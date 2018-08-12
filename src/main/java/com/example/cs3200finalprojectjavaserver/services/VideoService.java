@@ -33,4 +33,16 @@ public class VideoService {
         return null;
     }
 
+    @PutMapping("/api/video/{videoId}")
+    public Video updateVideo(@PathVariable("id") String id, @RequestBody Video video) {
+        Video oldVideo = videoRepository.findById(Integer.parseInt(id)).get();
+        oldVideo.updateVideo(video);
+        return videoRepository.save(oldVideo);
+    }
+
+    @DeleteMapping("/api/video/{videoId}")
+    public void deleteVideo(@PathVariable("videoId") String videoId) {
+        videoRepository.deleteById(Integer.parseInt(videoId));
+    }
+
 }

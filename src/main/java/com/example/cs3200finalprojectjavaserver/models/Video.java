@@ -9,6 +9,7 @@ public class Video {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     private String url;
+    private String title;
     @OneToMany(mappedBy="video")
     private List<Review> reviews;
 
@@ -33,5 +34,22 @@ public class Video {
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void updateVideo(Video video) {
+        if (video.title != null) {
+            this.title = video.title;
+        }
+        if (video.url != null) {
+            this.url = video.url;
+        }
     }
 }
