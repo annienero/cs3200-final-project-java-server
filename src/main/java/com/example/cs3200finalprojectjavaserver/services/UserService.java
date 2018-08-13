@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 
 @RestController
+@CrossOrigin(origins = "*", maxAge=3600)
 public class UserService {
 
     public static final String USER = "user";
