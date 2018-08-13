@@ -33,6 +33,14 @@ public class UserService {
         return userRepository.findById(userId).get();
     }
 
+    @PutMapping("/api/user/{id}")
+    public User updateUser(@PathVariable("id") String id, @RequestBody User user) {
+        int userId = Integer.parseInt(id);
+        User newUser = userRepository.findById(userId).get();
+        newUser.updateUser(user);
+        return userRepository.save(newUser);
+    }
+
     @GetMapping("/api/user/{username}")
     public User findUserByUsername(@PathVariable("username") String username) {
         return userRepository.findUserByUsername(username);
