@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 public interface VideoRepository extends CrudRepository<Video, Integer> {
-    @Query("SELECT video FROM Video video WHERE video.url=:url")
-    User findVideoByUrl(String url);
+    @Query("SELECT video FROM Video video WHERE video.youtubeId=:youtubeId")
+    User findVideoByYoutubeId(String youtubeId);
 }

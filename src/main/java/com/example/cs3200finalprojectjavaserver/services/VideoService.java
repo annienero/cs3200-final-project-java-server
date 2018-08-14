@@ -27,7 +27,7 @@ public class VideoService {
 
     @PostMapping("/api/video")
     public Video createVideo(@RequestBody Video video) {
-        if (videoRepository.findVideoByUrl(video.getUrl()) == null) {
+        if (videoRepository.findVideoByYoutubeId(video.getYoutubeId()) == null) {
             videoRepository.save(video);
             return video;
         }

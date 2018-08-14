@@ -8,7 +8,7 @@ public class Video {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
-    private String url;
+    private String youtubeId;
     private String title;
     @OneToMany(mappedBy="video")
     private List<Review> reviews;
@@ -20,12 +20,12 @@ public class Video {
         this.id = id;
     }
 
-    public String getUrl() {
-        return url;
+    public String getYoutubeId() {
+        return youtubeId;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setYoutubeId(String youtubeId) {
+        this.youtubeId = youtubeId;
     }
 
     public List<Review> getReviews() {
@@ -48,8 +48,8 @@ public class Video {
         if (video.title != null) {
             this.title = video.title;
         }
-        if (video.url != null) {
-            this.url = video.url;
+        if (video.youtubeId != null) {
+            this.youtubeId = video.youtubeId;
         }
     }
 }
