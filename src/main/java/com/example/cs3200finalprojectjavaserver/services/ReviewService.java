@@ -27,12 +27,7 @@ public class ReviewService {
 
     @PostMapping("/api/review")
     public Review createReview(@RequestBody Review review) {
-        //TODO
-       // if (reviewRepository.findReviewByVideoAndUser(review.getUser(), review.getVideo()) == null) {
-            reviewRepository.save(review);
-            return review;
-        //}
-        //return null;
+        return reviewRepository.save(review);
     }
 
     @PutMapping("/api/review/{reviewId}")
