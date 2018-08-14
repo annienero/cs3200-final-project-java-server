@@ -8,7 +8,7 @@ public class Video {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
-    private String youtubeId;
+    private String youtubeID;
     private String title;
     private String channelTitle;
     @OneToMany(mappedBy="video")
@@ -19,14 +19,6 @@ public class Video {
     }
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getYoutubeId() {
-        return youtubeId;
-    }
-
-    public void setYoutubeId(String youtubeId) {
-        this.youtubeId = youtubeId;
     }
 
     public List<Review> getReviews() {
@@ -45,6 +37,14 @@ public class Video {
         this.title = title;
     }
 
+    public String getYoutubeID() {
+        return youtubeID;
+    }
+
+    public void setYoutubeID(String youtubeID) {
+        this.youtubeID = youtubeID;
+    }
+
     public String getChannelTitle() {
         return channelTitle;
     }
@@ -57,12 +57,11 @@ public class Video {
         if (video.title != null) {
             this.title = video.title;
         }
-        if (video.youtubeId != null) {
-            this.youtubeId = video.youtubeId;
+        if (video.youtubeID != null) {
+            this.youtubeID = video.youtubeID;
         }
         if (video.channelTitle != null) {
             this.channelTitle = video.channelTitle;
         }
     }
-
 }
