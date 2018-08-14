@@ -11,6 +11,9 @@ public class Video {
     private String youtubeID;
     private String title;
     private String channelTitle;
+    private int viewCount;
+    private int likes;
+    private int dislikes;
     @OneToMany(mappedBy="video")
     private List<Review> reviews;
 
@@ -53,7 +56,35 @@ public class Video {
         this.channelTitle = channelTitle;
     }
 
+
+    public int getViewCount() {
+        return viewCount;
+    }
+
+    public void setViewCount(int viewCount) {
+        this.viewCount = viewCount;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
+    public int getDislikes() {
+        return dislikes;
+    }
+
+    public void setDislikes(int dislikes) {
+        this.dislikes = dislikes;
+    }
+
     public void updateVideo(Video video) {
+        this.likes = video.likes;
+        this.dislikes = video.dislikes;
+        this.viewCount = video.viewCount;
         if (video.title != null) {
             this.title = video.title;
         }
@@ -64,4 +95,5 @@ public class Video {
             this.channelTitle = video.channelTitle;
         }
     }
+
 }
