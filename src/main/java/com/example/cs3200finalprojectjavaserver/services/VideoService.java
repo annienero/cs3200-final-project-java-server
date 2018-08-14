@@ -19,6 +19,11 @@ public class VideoService {
         return (List<Video>) videoRepository.findAll();
     }
 
+    @GetMapping("/api/video/search/{keyword}")
+    public List<Video> findAllVideosWithKeyword(@PathVariable("keyword") String keyword) {
+        return (List<Video>) videoRepository.findAllVideosWithKeyword(keyword);
+    }
+
     @GetMapping("/api/video/{id}")
     public Video findVideoById(@PathVariable("id") String id) {
         int videoId = Integer.parseInt(id);
