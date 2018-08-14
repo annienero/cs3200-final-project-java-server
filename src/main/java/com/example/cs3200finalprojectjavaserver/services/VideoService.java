@@ -25,6 +25,11 @@ public class VideoService {
         return videoRepository.findById(videoId).get();
     }
 
+    @GetMapping("/api/youtube/{youtubeId}")
+    public Video findVideoByYoutubeID(@PathVariable("youtubeId") String youtubeId) {
+        return videoRepository.findVideoByYoutubeId(youtubeId);
+    }
+
     @PostMapping("/api/video")
     public Video createVideo(@RequestBody Video video) {
         if (videoRepository.findVideoByYoutubeId(video.getYoutubeID()) == null) {
