@@ -10,6 +10,7 @@ public class Video {
     private int id;
     private String youtubeId;
     private String title;
+    private String channelTitle;
     @OneToMany(mappedBy="video")
     private List<Review> reviews;
 
@@ -44,6 +45,14 @@ public class Video {
         this.title = title;
     }
 
+    public String getChannelTitle() {
+        return channelTitle;
+    }
+
+    public void setChannelTitle(String channelTitle) {
+        this.channelTitle = channelTitle;
+    }
+
     public void updateVideo(Video video) {
         if (video.title != null) {
             this.title = video.title;
@@ -51,5 +60,9 @@ public class Video {
         if (video.youtubeId != null) {
             this.youtubeId = video.youtubeId;
         }
+        if (video.channelTitle != null) {
+            this.channelTitle = video.channelTitle;
+        }
     }
+
 }
