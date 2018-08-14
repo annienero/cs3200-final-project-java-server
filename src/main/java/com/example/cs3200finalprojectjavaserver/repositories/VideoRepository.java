@@ -24,7 +24,7 @@ public interface VideoRepository extends CrudRepository<Video, Integer> {
 
     double getAvgOverallById(int id);
 
-    @Query(value = "SELECT * FROM Video WHERE channelTitle like %:keyword%", nativeQuery = true)
+    @Query(value = "SELECT * FROM Video WHERE title like %:keyword% or channel_title like %:keyword%", nativeQuery = true)
     List<Video> findAllVideosWithKeyword(@Param("keyword") String keyword);
 
 }
