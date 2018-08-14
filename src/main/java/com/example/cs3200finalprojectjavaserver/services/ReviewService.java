@@ -1,11 +1,18 @@
 package com.example.cs3200finalprojectjavaserver.services;
 
 import com.example.cs3200finalprojectjavaserver.models.Review;
+import com.example.cs3200finalprojectjavaserver.models.User;
+import com.example.cs3200finalprojectjavaserver.models.Video;
 import com.example.cs3200finalprojectjavaserver.repositories.ReviewRepository;
+import com.example.cs3200finalprojectjavaserver.repositories.VideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Optional;
+
+import static com.example.cs3200finalprojectjavaserver.services.UserService.USER;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge=3600, allowCredentials = "true")
@@ -13,6 +20,9 @@ public class ReviewService {
 
     @Autowired
     ReviewRepository reviewRepository;
+
+    @Autowired
+    VideoRepository videoRepository;
 
     @GetMapping("/api/review")
     public List<Review> findAllReviews() {
@@ -25,14 +35,23 @@ public class ReviewService {
         return reviewRepository.findById(reviewId).get();
     }
 
-    @PostMapping("/api/review")
-    public Review createReview(@RequestBody Review review) {
-        return reviewRepository.save(review);
+    @PostMapping("/api/video/{videoId}/review")
+    public Review createReview(@PathVariable("videoId") String videoId, @RequestBody Review review, HttpSession session) {
+        Optional<Video> data = videoRepository.findById(Integer.parseInt(videoId));
+        if(data.isPresent()) {
+            Video video = data.get();
+            review.setVideo(video);
+            review.setUser((User) session.getAttribute(USER));
+            reviewRepository.save(review);
+            //TODO review.getVideo().updateAverages();
+            return review;
+        }
+        return null;
     }
 
     @PutMapping("/api/review/{reviewId}")
-    public Review updateReview(@PathVariable("id") String id, @RequestBody Review review) {
-        Review oldReview = reviewRepository.findById(Integer.parseInt(id)).get();
+    public Review updateReview(@PathVariable("reviewId") String reviewId, @RequestBody Review review) {
+        Review oldReview = reviewRepository.findById(Integer.parseInt(reviewId)).get();
         oldReview.updateReview(review);
         return reviewRepository.save(oldReview);
     }
