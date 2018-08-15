@@ -14,7 +14,8 @@ public class Video {
     private int viewCount;
     private int likes;
     private int dislikes;
-    @OneToMany(mappedBy="video")
+    @OneToMany()
+    @JoinColumn(name="video_id", referencedColumnName="id")
     private List<Review> reviews;
 
     public int getId() {
@@ -55,7 +56,6 @@ public class Video {
     public void setChannelTitle(String channelTitle) {
         this.channelTitle = channelTitle;
     }
-
 
     public int getViewCount() {
         return viewCount;

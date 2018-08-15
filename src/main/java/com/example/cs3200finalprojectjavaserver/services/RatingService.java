@@ -37,7 +37,7 @@ public class RatingService {
             Review review = data.get();
             rating.setReview(review);
             ratingRepository.save(rating);
-            //review.getVideo().updateAverages();
+            //TODO review.getVideo().updateAverages();
             return rating;
         }
         return null;

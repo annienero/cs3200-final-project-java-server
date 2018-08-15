@@ -14,13 +14,15 @@ public class Review {
     @Temporal(TemporalType.TIMESTAMP)
     private Date reviewTime;
     private String reviewText;
-    @OneToMany(mappedBy="review")
+    @OneToMany()
+    @JoinColumn(name="review_id", referencedColumnName="id")
     private List<Rating> ratings;
     @ManyToOne
     @JsonIgnore
     private User user;
     @ManyToOne
     @JsonIgnore
+    @JoinColumn(name="video_id")
     private Video video;
 
     public int getId() {
