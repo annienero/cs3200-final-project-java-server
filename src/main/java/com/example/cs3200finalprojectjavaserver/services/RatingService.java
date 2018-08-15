@@ -4,6 +4,7 @@ import com.example.cs3200finalprojectjavaserver.models.Rating;
 import com.example.cs3200finalprojectjavaserver.models.Review;
 import com.example.cs3200finalprojectjavaserver.repositories.RatingRepository;
 import com.example.cs3200finalprojectjavaserver.repositories.ReviewRepository;
+import com.example.cs3200finalprojectjavaserver.repositories.VideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,8 @@ public class RatingService {
     RatingRepository ratingRepository;
     @Autowired
     ReviewRepository reviewRepository;
+    @Autowired
+    VideoRepository videoRepository;
 
     @GetMapping("/api/rating")
     public List<Rating> findAllRatings() {
@@ -36,8 +39,8 @@ public class RatingService {
         if(data.isPresent()) {
             Review review = data.get();
             rating.setReview(review);
+            review.getVideo().setAvgHumor(videoRepository.getAvgHumorById(review.getVideo().getId()));
             ratingRepository.save(rating);
-            //TODO review.getVideo().updateAverages();
             return rating;
         }
         return null;

@@ -10,12 +10,8 @@ import java.util.List;
 public interface VideoRepository extends CrudRepository<Video, Integer> {
     @Query("SELECT video FROM Video video WHERE video.youtubeID=:youtubeID")
     Video findVideoByYoutubeId(String youtubeID);
-//
-////    select Video.id, avg(Rating.value)
-////    from Video join Review using(Video.id) join Rating using(Review.id)
-////    where Rating.RatingType like 'HUMOR'
-////    group by Video.id
-    //@Query("SELECT avg(value) FROM Rating group by id")
+
+    @Query(value = "SELECT avg(rating_value) FROM Video video JOIN Review review ON video.id=review.video_id JOIN Rating rating ON review.id=rating.review_id WHERE rating.rating_type=1 AND video.id=:id GROUP BY video.id", nativeQuery = true)
     double getAvgHumorById(int id);
 
     double getAvgInformativeById(int id);
@@ -24,7 +20,7 @@ public interface VideoRepository extends CrudRepository<Video, Integer> {
 
     double getAvgOverallById(int id);
 
-    @Query(value = "SELECT * FROM Video WHERE title like %:keyword% or channel_title like %:keyword%", nativeQuery = true)
+    @Query(value = "SELECT * FROM Video WHERE title LIKE %:keyword% OR channel_title LIKE %:keyword%", nativeQuery = true)
     List<Video> findAllVideosWithKeyword(@Param("keyword") String keyword);
 
 }

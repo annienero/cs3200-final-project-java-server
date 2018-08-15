@@ -14,6 +14,7 @@ public class Video {
     private int viewCount;
     private int likes;
     private int dislikes;
+    private double avgHumor;
     @OneToMany()
     @JoinColumn(name="video_id", referencedColumnName="id")
     private List<Review> reviews;
@@ -81,6 +82,14 @@ public class Video {
         this.dislikes = dislikes;
     }
 
+    public double getAvgHumor() {
+        return avgHumor;
+    }
+
+    public void setAvgHumor(double avgHumor) {
+        this.avgHumor = avgHumor;
+    }
+
     public void updateVideo(Video video) {
         this.likes = video.likes;
         this.dislikes = video.dislikes;
@@ -95,5 +104,8 @@ public class Video {
             this.channelTitle = video.channelTitle;
         }
     }
+
+
+
 
 }

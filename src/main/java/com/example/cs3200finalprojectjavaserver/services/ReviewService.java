@@ -43,7 +43,6 @@ public class ReviewService {
             review.setVideo(video);
             review.setUser((User) session.getAttribute(USER));
             reviewRepository.save(review);
-            //TODO review.getVideo().updateAverages();
             return review;
         }
         return null;
