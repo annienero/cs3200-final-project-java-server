@@ -7,9 +7,10 @@ import javax.persistence.*;
 enum RatingType {
     OVERALL,
     HUMOR,
-    AGE,
     INFORMATIVE,
-    PRODUCTION
+    PRODUCTION,
+    CUTENESS,
+    SADNESS
 }
 
 @Entity
@@ -21,6 +22,7 @@ public class Rating {
     private int ratingValue;
     @ManyToOne
     @JsonIgnore
+    @JoinColumn(name="review_id")
     private Review review;
 
     public int getId() {
