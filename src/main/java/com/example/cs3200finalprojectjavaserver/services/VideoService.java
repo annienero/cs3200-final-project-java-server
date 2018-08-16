@@ -26,6 +26,7 @@ public class VideoService {
             try { video.setAvgHumor(videoRepository.getAvgHumorById(video.getId())); } catch (Exception e) {}
             try { video.setAvgInformativeness(videoRepository.getAvgInformativenessById(video.getId())); } catch (Exception e) {}
             try { video.setAvgProduction(videoRepository.getAvgProductionById(video.getId())); } catch (Exception e) {}
+            try { video.setAvgCuteness(videoRepository.getAvgCutenessById(video.getId())); } catch (Exception e) {}
             try { video.setAvgSadness(videoRepository.getAvgSadnessById(video.getId())); } catch (Exception e) {}
             videoRepository.save(video);
         }
@@ -34,7 +35,7 @@ public class VideoService {
 
     @GetMapping("/api/video/search/{keyword}")
     public List<Video> findAllVideosWithKeyword(@PathVariable("keyword") String keyword) {
-        return (List<Video>) videoRepository.findAllVideosWithKeyword(keyword);
+        return videoRepository.findAllVideosWithKeyword(keyword);
     }
 
     @GetMapping("/api/video/{id}")
