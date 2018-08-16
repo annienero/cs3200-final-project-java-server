@@ -1,5 +1,7 @@
 package com.example.cs3200finalprojectjavaserver.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -21,6 +23,7 @@ public class Video {
     private double avgCuteness;
     private double avgSadness;
     @ManyToOne()
+    @JsonIgnore
     @JoinColumn(name="uploader_id")
     private User uploader;
     @OneToMany()
