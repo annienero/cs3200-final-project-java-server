@@ -60,16 +60,18 @@ public class ReviewService {
         reviewRepository.deleteById(Integer.parseInt(reviewId));
     }
 
-//    @GetMapping("/api/user/video/{videoId}/review")
-//    public List<Review> findAllReviewsForVideoForUser(@PathVariable("videoId") String videoId, @RequestBody Review review, HttpSession session) {
-//        Optional<Video> data = videoRepository.findById(Integer.parseInt(videoId));
-//        if(data.isPresent()) {
-//            Video video = data.get();
-//            User user = (User) session.getAttribute(USER);
-//            return reviewRepository.findAllReviewsForVideoForUser(user.getId(), video.getId());
-//        }
-//        return null;
-//    }
+    @GetMapping("/api/user/video/{videoId}/review")
+    public List<Review> findAllReviewsForVideoForUser(@PathVariable("videoId") String videoId, @RequestBody Review review, HttpSession session) {
+        Optional<Video> data = videoRepository.findById(Integer.parseInt(videoId));
+        if(data.isPresent()) {
+            Video video = data.get();
+            User user = (User) session.getAttribute(USER);
+            if (user != null) {
+                return reviewRepository.findAllReviewsForVideoForUser(user.getId(), video.getId());
+            }
+        }
+        return null;
+    }
 
     @GetMapping("/api/video/{videoId}/review")
     public List<Review> findAllReviewsForVideo(@PathVariable("videoId") String videoId) {

@@ -15,7 +15,8 @@ public class User {
     private String email;
     @OneToMany(mappedBy="user")
     private List<Review> reviews;
-    @OneToMany(mappedBy="uploader")
+    @OneToMany()
+    @JoinColumn(name="uploader_id", referencedColumnName="id")
     private List<Video> uploads;
 
     public int getId() {

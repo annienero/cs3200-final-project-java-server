@@ -21,6 +21,7 @@ public class Video {
     private double avgCuteness;
     private double avgSadness;
     @ManyToOne()
+    @JoinColumn(name="uploader_id")
     private User uploader;
     @OneToMany()
     @JoinColumn(name="video_id", referencedColumnName="id")
