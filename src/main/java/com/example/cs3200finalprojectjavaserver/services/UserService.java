@@ -42,7 +42,7 @@ public class UserService {
         return userRepository.save(newUser);
     }
 
-    @GetMapping("/api/user/{username}")
+    @GetMapping("/api/user/username/{username}")
     public User findUserByUsername(@PathVariable("username") String username) {
         return userRepository.findUserByUsername(username);
     }
