@@ -14,7 +14,13 @@ public class Video {
     private int viewCount;
     private int likes;
     private int dislikes;
+    private double avgOverall;
     private double avgHumor;
+    private double avgInformativeness;
+    private double avgProduction;
+    private double avgCuteness;
+    private double avgSadness;
+
     @OneToMany()
     @JoinColumn(name="video_id", referencedColumnName="id")
     private List<Review> reviews;
@@ -82,12 +88,52 @@ public class Video {
         this.dislikes = dislikes;
     }
 
+    public double getAvgOverall() {
+        return avgOverall;
+    }
+
+    public void setAvgOverall(double avgOverall) {
+        this.avgOverall = avgOverall;
+    }
+
     public double getAvgHumor() {
         return avgHumor;
     }
 
     public void setAvgHumor(double avgHumor) {
         this.avgHumor = avgHumor;
+    }
+
+    public double getAvgInformativeness() {
+        return avgInformativeness;
+    }
+
+    public void setAvgInformativeness(double avgInformativeness) {
+        this.avgInformativeness = avgInformativeness;
+    }
+
+    public double getAvgProduction() {
+        return avgProduction;
+    }
+
+    public void setAvgProduction(double avgProduction) {
+        this.avgProduction = avgProduction;
+    }
+
+    public double getAvgCuteness() {
+        return avgCuteness;
+    }
+
+    public void setAvgCuteness(double avgCuteness) {
+        this.avgCuteness = avgCuteness;
+    }
+
+    public double getAvgSadness() {
+        return avgSadness;
+    }
+
+    public void setAvgSadness(double avgSadness) {
+        this.avgSadness = avgSadness;
     }
 
     public void updateVideo(Video video) {
@@ -104,8 +150,5 @@ public class Video {
             this.channelTitle = video.channelTitle;
         }
     }
-
-
-
 
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*", maxAge=3600, allowCredentials = "true")
+@CrossOrigin(origins = "*", maxAge = 3600, allowCredentials = "true")
 public class VideoService {
 
     @Autowired
@@ -16,7 +16,15 @@ public class VideoService {
 
     @GetMapping("/api/video")
     public List<Video> findAllVideos() {
-        return (List<Video>) videoRepository.findAll();
+        List<Video> videos = (List<Video>) videoRepository.findAll();
+        for (Video video : videos) {
+            try { video.setAvgOverall(videoRepository.getAvgOverallById(video.getId())); } catch (Exception e) {}
+            try { video.setAvgHumor(videoRepository.getAvgHumorById(video.getId())); } catch (Exception e) {}
+            try { video.setAvgInformativeness(videoRepository.getAvgInformativenessById(video.getId())); } catch (Exception e) {}
+            try { video.setAvgProduction(videoRepository.getAvgProductionById(video.getId())); } catch (Exception e) {}
+            try { video.setAvgSadness(videoRepository.getAvgSadnessById(video.getId())); } catch (Exception e) {}
+        }
+        return videos;
     }
 
     @GetMapping("/api/video/search/{keyword}")

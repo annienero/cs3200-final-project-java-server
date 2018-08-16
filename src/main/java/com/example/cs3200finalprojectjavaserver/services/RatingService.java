@@ -1,7 +1,9 @@
 package com.example.cs3200finalprojectjavaserver.services;
 
 import com.example.cs3200finalprojectjavaserver.models.Rating;
+import com.example.cs3200finalprojectjavaserver.models.RatingType;
 import com.example.cs3200finalprojectjavaserver.models.Review;
+import com.example.cs3200finalprojectjavaserver.models.Video;
 import com.example.cs3200finalprojectjavaserver.repositories.RatingRepository;
 import com.example.cs3200finalprojectjavaserver.repositories.ReviewRepository;
 import com.example.cs3200finalprojectjavaserver.repositories.VideoRepository;
@@ -39,7 +41,6 @@ public class RatingService {
         if(data.isPresent()) {
             Review review = data.get();
             rating.setReview(review);
-            review.getVideo().setAvgHumor(videoRepository.getAvgHumorById(review.getVideo().getId()));
             ratingRepository.save(rating);
             return rating;
         }
