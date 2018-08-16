@@ -25,6 +25,11 @@ public class Review {
     @JoinColumn(name="video_id")
     private Video video;
 
+    @PrePersist
+    protected void onCreate() {
+        reviewTime = new Date();
+    }
+
     public int getId() {
         return id;
     }

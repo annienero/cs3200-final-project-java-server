@@ -1,11 +1,15 @@
 package com.example.cs3200finalprojectjavaserver.services;
 
+import com.example.cs3200finalprojectjavaserver.models.User;
 import com.example.cs3200finalprojectjavaserver.models.Video;
 import com.example.cs3200finalprojectjavaserver.repositories.VideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
+
+import static com.example.cs3200finalprojectjavaserver.services.UserService.USER;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600, allowCredentials = "true")
@@ -23,6 +27,7 @@ public class VideoService {
             try { video.setAvgInformativeness(videoRepository.getAvgInformativenessById(video.getId())); } catch (Exception e) {}
             try { video.setAvgProduction(videoRepository.getAvgProductionById(video.getId())); } catch (Exception e) {}
             try { video.setAvgSadness(videoRepository.getAvgSadnessById(video.getId())); } catch (Exception e) {}
+            videoRepository.save(video);
         }
         return videos;
     }
@@ -44,8 +49,9 @@ public class VideoService {
     }
 
     @PostMapping("/api/video")
-    public Video createVideo(@RequestBody Video video) {
+    public Video createVideo(@RequestBody Video video, HttpSession session) {
         if (videoRepository.findVideoByYoutubeId(video.getYoutubeID()) == null) {
+            video.setUploader((User) session.getAttribute(USER));
             videoRepository.save(video);
             return video;
         }

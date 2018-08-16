@@ -1,7 +1,6 @@
 package com.example.cs3200finalprojectjavaserver.models;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.util.List;
 
 @Entity
@@ -16,6 +15,8 @@ public class User {
     private String email;
     @OneToMany(mappedBy="user")
     private List<Review> reviews;
+    @OneToMany(mappedBy="uploader")
+    private List<Video> uploads;
 
     public int getId() {
         return id;
@@ -70,6 +71,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Video> getUploads() {
+        return uploads;
+    }
+
+    public void setUploads(List<Video> uploads) {
+        this.uploads = uploads;
     }
 
     public void updateUser(User user) {

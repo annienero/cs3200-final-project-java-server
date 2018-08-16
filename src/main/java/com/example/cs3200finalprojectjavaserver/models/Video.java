@@ -20,7 +20,8 @@ public class Video {
     private double avgProduction;
     private double avgCuteness;
     private double avgSadness;
-
+    @ManyToOne()
+    private User uploader;
     @OneToMany()
     @JoinColumn(name="video_id", referencedColumnName="id")
     private List<Review> reviews;
@@ -132,6 +133,14 @@ public class Video {
         return avgSadness;
     }
 
+    public User getUploader() {
+        return uploader;
+    }
+
+    public void setUploader(User uploader) {
+        this.uploader = uploader;
+    }
+
     public void setAvgSadness(double avgSadness) {
         this.avgSadness = avgSadness;
     }
@@ -150,5 +159,4 @@ public class Video {
             this.channelTitle = video.channelTitle;
         }
     }
-
 }
